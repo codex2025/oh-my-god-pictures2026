@@ -150,8 +150,6 @@ textarea {
 .hero {
   position: relative;
   min-height: calc(100vh - var(--nav-height));
-  display: grid;
-  place-items: center;
   overflow: hidden;
   background: var(--bg);
 }
@@ -236,13 +234,14 @@ textarea {
 
 .slideshow {
   display: flex;
-  width: 100%;
+  width: calc(100% * 3);
   height: 100%;
   transition: transform 0.6s ease-in-out;
   will-change: transform;
 }
 
 .slide {
+  width: 100%;
   flex: 0 0 100%;
   height: 100%;
   position: relative;
@@ -256,7 +255,6 @@ textarea {
   object-position: center;
   display: block;
 }
-
 .play-btn {
   position: absolute;
   top: 50%;
