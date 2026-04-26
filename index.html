@@ -78,11 +78,28 @@
     <main>
       <section class="hero" id="hero">
         <div class="hero-overlay"></div>
-        <div class="hero-ad reveal" style="width: 100vw; margin-bottom: 2rem;">
-          <video autoplay muted loop controls style="width: 100vw; height: auto; display: block; object-fit: cover;">
-            <source src="videos/WhatsApp Video 2026-04-24 at 13.19.21.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        <div class="hero-slideshow reveal" id="hero-slideshow" aria-label="Featured carousel with video and images">
+          <div class="slideshow-wrapper">
+            <button type="button" class="slideshow-btn slideshow-btn-prev" data-direction="prev" aria-label="Previous slide">❮</button>
+            <div class="slideshow-container">
+              <div class="slideshow">
+                <div class="slide">
+                  <video id="hero-video" muted playsinline>
+                    <source src="videos/WhatsApp Video 2026-04-24 at 13.19.21.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <button class="play-btn" id="play-btn" style="display: none;">▶</button>
+                </div>
+                <div class="slide">
+                  <img src="images/slide-1.png" alt="Promotional image one for Oh My God Pictures">
+                </div>
+                <div class="slide">
+                  <img src="images/slide-2.png" alt="Promotional image two for Oh My God Pictures">
+                </div>
+              </div>
+            </div>
+            <button type="button" class="slideshow-btn slideshow-btn-next" data-direction="next" aria-label="Next slide">❯</button>
+          </div>
         </div>
         <div class="container hero-content reveal" style="padding-top: 0;">
           <p class="eyebrow">A Legacy of Storytelling</p>
