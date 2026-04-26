@@ -213,7 +213,7 @@ textarea {
 }
 
 .hero-slideshow {
-  width: 100%;
+  width: var(--container);
 }
 
 .slideshow-wrapper {
@@ -361,9 +361,13 @@ textarea {
     font-size: 1rem;
   }
 
-  .slideshow {
-    aspect-ratio: auto;
-    min-height: 250px;
+  .slideshow-container {
+    aspect-ratio: 16 / 9;
+  }
+
+  .slide video,
+  .slide img {
+    object-fit: contain;
   }
 }
 
