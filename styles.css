@@ -236,19 +236,28 @@ textarea {
   display: flex;
   width: 100%;
   height: 100%;
+  transform: translate3d(0, 0, 0);
   transition: transform 0.6s ease-in-out;
   will-change: transform;
 }
 
 .slide {
+  flex: 0 0 100%;
+  width: 100%;
   min-width: 100%;
+  max-width: 100%;
   height: 100%;
-  flex-shrink: 0;
   position: relative;
+  overflow: hidden;
+  background: #000;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .slide video,
 .slide img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -256,6 +265,7 @@ textarea {
   display: block;
   max-width: 100%;
   max-height: 100%;
+  background: #000;
 }
 .play-btn {
   position: absolute;
@@ -270,6 +280,7 @@ textarea {
   border-radius: 50%;
   cursor: pointer;
   transition: background 0.3s ease;
+  z-index: 2;
 }
 
 .play-btn:hover {

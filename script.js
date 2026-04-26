@@ -172,26 +172,79 @@ const playBtn = document.getElementById('play-btn');
 
 let currentIndex = 0;
 let autoplayInterval;
+let videoFallbackTimer;
 const slideDuration = 5000;
 
 function moveToSlide(index) {
+  if (!carousel || !slides.length) {
+    return;
+  }
+
   currentIndex = index;
   if (currentIndex < 0) currentIndex = slides.length - 1;
   if (currentIndex >= slides.length) currentIndex = 0;
   
-  carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+  carousel.style.transform = `translate3d(-${currentIndex * 100}%, 0, 0)`;
   
-  // Handle video slide
-  if (currentIndex === 0) {
-    video.currentTime = 0;
-    video.play().catch(() => {
-      playBtn.style.display = 'block';
-    });
+  if (video && currentIndex !== 0) {
+    video.pause();
+  }
+
+  if (video && currentIndex === 0) {
+    playHeroVideo();
   } else {
-    playBtn.style.display = 'none';
+    hidePlayButton();
   }
   
   startAutoplay();
+}
+
+function hidePlayButton() {
+  if (playBtn) {
+    playBtn.style.display = 'none';
+  }
+}
+
+function showPlayButton() {
+  if (playBtn) {
+    playBtn.style.display = 'block';
+  }
+}
+
+function playHeroVideo() {
+  hidePlayButton();
+  clearTimeout(videoFallbackTimer);
+
+  video.muted = true;
+  video.setAttribute('muted', '');
+  video.setAttribute('playsinline', '');
+  video.setAttribute('webkit-playsinline', '');
+
+  try {
+    video.currentTime = 0;
+  } catch (error) {
+    // Some iOS builds reject seeking until metadata is available.
+  }
+
+  const playAttempt = video.play();
+
+  if (playAttempt && typeof playAttempt.catch === 'function') {
+    playAttempt.catch(() => {
+      showPlayButton();
+      scheduleVideoFallback();
+    });
+  }
+
+  scheduleVideoFallback();
+}
+
+function scheduleVideoFallback() {
+  clearTimeout(videoFallbackTimer);
+  videoFallbackTimer = setTimeout(() => {
+    if (currentIndex === 0 && video && (video.paused || video.readyState < 2)) {
+      nextSlide();
+    }
+  }, slideDuration);
 }
 
 function nextSlide() {
@@ -204,54 +257,70 @@ function prevSlide() {
 
 function startAutoplay() {
   clearInterval(autoplayInterval);
-  if (currentIndex === 0) {
-    // Wait for video to end
+  clearTimeout(videoFallbackTimer);
+
+  if (video && currentIndex === 0) {
     video.onended = () => {
       nextSlide();
     };
+
+    scheduleVideoFallback();
   } else {
     autoplayInterval = setInterval(nextSlide, slideDuration);
   }
 }
 
 // Button event listeners
-prevBtn.addEventListener('click', () => {
-  clearInterval(autoplayInterval);
-  prevSlide();
-});
+if (prevBtn) {
+  prevBtn.addEventListener('click', () => {
+    clearInterval(autoplayInterval);
+    clearTimeout(videoFallbackTimer);
+    prevSlide();
+  });
+}
 
-nextBtn.addEventListener('click', () => {
-  clearInterval(autoplayInterval);
-  nextSlide();
-});
+if (nextBtn) {
+  nextBtn.addEventListener('click', () => {
+    clearInterval(autoplayInterval);
+    clearTimeout(videoFallbackTimer);
+    nextSlide();
+  });
+}
 
 // Touch support for swipe
 let startX;
 const slideshowContainer = document.querySelector('.slideshow-container');
-slideshowContainer.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX;
-});
+if (slideshowContainer) {
+  slideshowContainer.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
 
-slideshowContainer.addEventListener('touchend', (e) => {
-  if (!startX) return;
-  const endX = e.changedTouches[0].clientX;
-  const diff = startX - endX;
-  if (Math.abs(diff) > 50) {
-    if (diff > 0) {
-      nextSlide();
-    } else {
-      prevSlide();
+  slideshowContainer.addEventListener('touchend', (e) => {
+    if (!startX) return;
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
     }
-  }
-  startX = null;
-});
+    startX = null;
+  }, { passive: true });
+}
 
 // Play button for video
-playBtn.addEventListener('click', () => {
-  video.play();
-  playBtn.style.display = 'none';
-});
+if (playBtn && video) {
+  playBtn.addEventListener('click', () => {
+    hidePlayButton();
+    video.play().catch(() => {
+      showPlayButton();
+    });
+  });
+}
 
 // Initialize
-moveToSlide(0);
-
+if (carousel && slides.length) {
+  moveToSlide(0);
+}
