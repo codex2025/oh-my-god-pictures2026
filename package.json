@@ -1,0 +1,28 @@
+{
+  "name": "oh-my-god-pictures",
+  "version": "1.0.0",
+  "description": "Oh My God Pictures - Film Production Company in Chennai",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codex2025/oh-my-god-pictures2026.git"
+  },
+  "keywords": [
+    "film-production",
+    "chennai",
+    "tamil-nadu",
+    "production-company"
+  ],
+  "author": "Oh My God Pictures",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codex2025/oh-my-god-pictures2026/issues"
+  },
+  "homepage": "https://github.com/codex2025/oh-my-god-pictures2026#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
