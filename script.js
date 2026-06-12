@@ -324,3 +324,38 @@ if (playBtn && video) {
 if (carousel && slides.length) {
   moveToSlide(0);
 }
+
+// Gallery Slideshow - Auto-rotate every 3 seconds
+const galleryContainer = document.querySelector('.gallery');
+const gallerySlides = document.querySelectorAll('.gallery-slide');
+let galleryIndex = 0;
+let galleryAutoplayInterval;
+const galleryDuration = 3000; // 3 seconds
+
+function moveToGallerySlide(index) {
+  if (!galleryContainer || !gallerySlides.length) {
+    return;
+  }
+
+  galleryIndex = index;
+  if (galleryIndex < 0) galleryIndex = gallerySlides.length - 1;
+  if (galleryIndex >= gallerySlides.length) galleryIndex = 0;
+
+  galleryContainer.style.transform = `translate3d(-${galleryIndex * 100}%, 0, 0)`;
+}
+
+function nextGallerySlide() {
+  moveToGallerySlide(galleryIndex + 1);
+  startGalleryAutoplay();
+}
+
+function startGalleryAutoplay() {
+  clearInterval(galleryAutoplayInterval);
+  galleryAutoplayInterval = setInterval(nextGallerySlide, galleryDuration);
+}
+
+// Initialize gallery slideshow
+if (galleryContainer && gallerySlides.length) {
+  moveToGallerySlide(0);
+  startGalleryAutoplay();
+}
