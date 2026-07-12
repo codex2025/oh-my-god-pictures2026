@@ -32,6 +32,15 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CQFT2CDCM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3CQFT2CDCM');
+  </script>
   <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -70,6 +79,7 @@
         <div class="nav-menu" id="nav-menu">
           <a href="#about">About</a>
           <a href="#founder">Founder</a>
+          <a href="#team">Team</a>
           <a href="#filmography">Filmography</a>
           <a href="promotions.html">Promotions</a>
           <a href="#contact">Contact</a>
@@ -150,9 +160,40 @@
 
       <section class="section section-contrast" id="founder">
         <div class="container founder-layout">
-          <div class="founder-image reveal">
-            <img src="images/founder.jpg"
-              alt="Portrait of Dr. Nagaraj Vishnu, Founder Chairman of Oh My God Pictures" />
+          <div class="gallery-slideshow reveal" id="gallery-slideshow" aria-label="Gallery carousel with rotating images">
+            <div class="gallery-wrapper">
+              <div class="gallery-container">
+                <div class="gallery">
+                  <div class="gallery-slide">
+                    <img src="images/gallery-1.jpg" alt="Gallery image one" loading="lazy" decoding="async">
+                  </div>
+                  <div class="gallery-slide">
+                    <img src="images/gallery-2.jpg" alt="Gallery image two" loading="lazy" decoding="async">
+                  </div>
+                  <div class="gallery-slide">
+                    <img src="images/gallery-3.jpg" alt="Gallery image three" loading="lazy" decoding="async">
+                  </div>
+                  <div class="gallery-slide">
+                    <img src="images/gallery-4.jpg" alt="Gallery image four" loading="lazy" decoding="async">
+                  </div>
+                  <div class="gallery-slide">
+                    <img src="images/gallery-5.jpg" alt="Gallery image five" loading="lazy" decoding="async">
+                  </div>
+                  <div class="gallery-slide">
+                    <img src="images/gallery-6.jpg" alt="Gallery image six" loading="lazy" decoding="async">
+                  </div>
+                  <div class="gallery-slide">
+                    <img src="images/gallery-7.jpg" alt="Gallery image seven" loading="lazy" decoding="async">
+                  </div>
+                  <div class="gallery-slide">
+                    <img src="images/gallery-8.jpg" alt="Gallery image eight" loading="lazy" decoding="async">
+                  </div>
+                  <div class="gallery-slide">
+                    <img src="images/gallery-9.jpg" alt="Gallery image nine" loading="lazy" decoding="async">
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="founder-copy reveal">
             <p class="eyebrow">Scene 02 // The Visionary</p>
@@ -180,6 +221,45 @@
               cultural footprint for audiences in Chennai, Tamil Nadu, and
               beyond.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section team-section" id="team">
+        <div class="container">
+          <div class="section-heading team-heading reveal">
+            <p class="eyebrow">Scene 03 // My Team</p>
+            <h2>The people guiding our work forward.</h2>
+          </div>
+          <div class="team-grid">
+            <article class="team-card reveal">
+              <div class="team-spotlight" aria-hidden="true"></div>
+              <div class="team-portrait-shell">
+                <div class="team-photo">
+                  <img src="images/Ranjith surya.jpeg" alt="Ranjit Surya, Operational Director" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('team-photo-placeholder'); this.remove();">
+                  <span aria-hidden="true">RS</span>
+                </div>
+              </div>
+              <div class="team-copy">
+                <p class="team-role">Operational Director</p>
+                <h3>Ranjit Surya</h3>
+                <p class="team-summary">Leads production operations, coordination, and on-ground execution.</p>
+              </div>
+            </article>
+            <article class="team-card reveal">
+              <div class="team-spotlight" aria-hidden="true"></div>
+              <div class="team-portrait-shell">
+                <div class="team-photo">
+                  <img src="images/saranya-sathyan.jpeg" alt="Adv Saranya Sathyan, Legal Advisor" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('team-photo-placeholder'); this.remove();">
+                  <span aria-hidden="true">SS</span>
+                </div>
+              </div>
+              <div class="team-copy">
+                <p class="team-role">Legal Advisor</p>
+                <h3>Adv Saranya Sathyan</h3>
+                <p class="team-summary">Guides legal clarity across contracts, rights, and production compliance.</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -399,6 +479,7 @@
         <div class="footer-links" aria-label="Footer navigation">
           <a href="#about">About</a>
           <a href="#founder">Founder</a>
+          <a href="#team">Team</a>
           <a href="#filmography">Filmography</a>
           <a href="promotions.html">Promotions</a>
           <a href="#contact">Contact</a>
